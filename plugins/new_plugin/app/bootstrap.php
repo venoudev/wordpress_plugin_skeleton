@@ -1,8 +1,8 @@
 <?php
 
 
-use AbnerPay\Woo\Config\ContainerConfig;
 use Venoudev\WpPlugin\Config\Config;
+use Venoudev\WpPlugin\Config\ContainerConfig;
 
 Config::init();
 
