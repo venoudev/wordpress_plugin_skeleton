@@ -1,0 +1,35 @@
+version: "3.3"
+services:
+  woocommerce:
+    # Uncomment this line if you are using a Macbook with Mx chip series
+    platform: linux/x86_64
+    container_name: wordpress_dev
+    build: ./environments/local/.
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_DEBUG: 'true'
+    # Uncomment this lines when you need to get the code changes reflected on the container.
+    volumes:
+      - ./plugins/new_plugin:/var/www/html/wp-content/plugins/new_plugin
+      - ./plugins/woocommerce:/var/www/html/wp-content/plugins/woocommerce
+      - ./environments/local/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    ports:
+      - 9054:80
+
+  db:
+    container_name: db_wordpress_dev
+    # Uncomment this line if you are using a Macbook with Mx chip series
+    platform: linux/x86_64
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    ports:
+      - 33063:3306

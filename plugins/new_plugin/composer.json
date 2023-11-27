@@ -1,0 +1,75 @@
+{
+    "name": "venoudev/wp-plugin",
+    "description": "A skeleton from new plugins for Wordpress",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Venoudev\\WpPlugin\\": "src/",
+            "Venoudev\\WpPlugin\\Config\\": "config/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Venoudev\\WpPlugin\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "venoudev"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php-di/php-di": "^6.4",
+        "brianhenryie/strauss": "^0.14.1",
+        "monolog/monolog": "2.5",
+        "psr/log": "1.1.4",
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.23",
+        "mockery/mockery": "^1.6"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "strauss" : "./vendor/bin/strauss",
+        "test": "./vendor/bin/pest"
+    },
+    "extra": {
+        "strauss": {
+            "target_directory": "vendor_custom",
+            "namespace_prefix": "Venoudev\\",
+            "classmap_prefix": "Venoudev",
+            "constant_prefix": "Venoudev_",
+            "include_modified_date": false,
+            "packages": [
+                "guzzlehttp/guzzle"
+            ],
+            "override_autoload": {},
+            "exclude_from_copy": {
+                "packages": [
+                ],
+                "namespaces": [
+                ],
+                "file_patterns": [
+                ]
+            },
+            "exclude_from_prefix": {
+                "packages": [
+                ],
+                "namespaces": [
+                ],
+                "file_patterns": [
+                    "/^psr.*$/"
+                ]
+            },
+            "namespace_replacement_patterns": {
+            }
+        }
+    }
+}
